@@ -23,10 +23,11 @@ ARG DEV=false
 # add user inside image - best practice to not use the root
 # no password because we don't need it
 # no create home to keep lightweight
+
 RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     /py/bin/pip install -r /tmp/requirements.txt && \
-    if [ $DEV = "true"];\
+    if [ $DEV = "true" ]; \
       then /py/bin/pip install -r /tmp/requirements.dev.txt ;\
     fi && \
     rm -rf /tmp && \
