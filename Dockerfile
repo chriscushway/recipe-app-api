@@ -1,4 +1,4 @@
-FROM python:3.13-rc-alpine3.19
+FROM python:3.11-alpine
 LABEL maintainer="cushcoding.co.za"
 
 #This tells us that we want python output to go directly to console
@@ -32,7 +32,7 @@ RUN python -m venv /py && \
     /py/bin/pip install --upgrade pip && \
     apk add --update --no-cache postgresql-client && \
     apk add --update --no-cache --virtual .tmp-build-deps \
-      build-base postgresql-dev musl-dev && \
+      build-base postgresql-dev musl-dev && \ 
     /py/bin/pip install -r /tmp/requirements.txt && \
     if [ $DEV = "true" ]; \
       then /py/bin/pip install -r /tmp/requirements.dev.txt ;\
